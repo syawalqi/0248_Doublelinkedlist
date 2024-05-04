@@ -36,9 +36,26 @@ void addNode() {
         newNode->prev = NULL; //step 5
         start = newNode; // step 6
     }
-    else{
-        // inster the new node in the middle or at the end
-        
+        else {
+    // insert the new node in the middle or at the end
+    node* current = start;
+    node* previous = NULL;
+
+    while (current != NULL && current->noMhs < newNode->noMhs) {
+        previous = current;
+        current = current->next;
+    }
+    newNode->next = current;
+    newNode->prev = previous;
+
+    if (current != NULL) {
+        current->prev = newNode;
+    }
+    if (previous != NULL) {
+        previous->next = newNode;
+    }
+    else {
+        start = newNode;
     }
 }
 
