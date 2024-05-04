@@ -59,3 +59,23 @@ void addNode() {
     }
 }
 
+bool search(int rollNo, node** previous, node** current)
+{
+    if (start == NULL) {
+        *previous = *current = NULL;
+        return false; // Return false indicating the list is empty
+    }
+
+    *previous = NULL;
+    *current = start;
+
+    while (*current != NULL && (*current)->noMhs != rollNo)
+    {
+        *previous = *current;
+        *current = (*current)->next;
+    }
+
+    // If current is NULL, roll number not found
+    return (*current != NULL);
+}
+
